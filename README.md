@@ -1,4 +1,4 @@
-# This  Hotel booking system  with Laravel9
+# This  School  booking system  with Laravel 9
 
 ## About the project
 
@@ -26,9 +26,9 @@
 
             php ../composer.phar install  
 
-* Create database schema in the MySQL Workbench  with name - travel  
+* Create database schema in the MySQL Workbench  with name - schools  
 * Then in your cloned laravel project find .env.example file, copy and change it to .env;
-* Open .env file, find database line and change it to your freshly created database DB_DATABASE=travel
+* Open .env file, find database line and change it to your freshly created database DB_DATABASE=schools
 
 * Run migrations and seeders by typing:
 
