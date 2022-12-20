@@ -24,6 +24,7 @@ class ApplicationsController extends Controller
             $appli['user'] = $user->email;
             // $appli['address'] = $school->address;
             $generatedApplis[] = $appli;
+            
         }
 
         if ($generatedApplis) {
@@ -141,4 +142,22 @@ class ApplicationsController extends Controller
                 'message' => 'Failed to delete request'
             ], 500);
     }
+    public function destroyAppl($id, Applications $applis)
+    {
+      
+
+        $school = Applications::where('id', $id);
+
+        if ($school->delete())
+            return response()->json([
+                'success' => true,
+                'message' => 'Request deleted successfully'
+            ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete request'
+            ], 500);
+    }
+
 }
