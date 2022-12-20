@@ -70,15 +70,18 @@ class ApplicationsController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            // 'school_id' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'schools_id' => 'required'
+        // ]);
 
 
         $school = new Applications();
         $school->school_id = $request->school_id;
         $school->name = $request->name;
         $school->surname = $request->surname;
+        $school->class = $request->class;
+        $school->student_id = $request->student_id;
+        $school->student_bd = $request->student_bd;
         $school->approved = 0;
         $school->user_id = auth()->user()->id;
 
