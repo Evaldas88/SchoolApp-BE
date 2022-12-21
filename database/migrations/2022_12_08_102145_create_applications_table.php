@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->integer('approved')->default(0);
-            $table->integer('student_id')->default(0);
-            $table->integer('class')->default(0);
+            $table->string('student_id')->nullable();
+            $table->integer('class')->nullable();
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->date('student_bd')->nullable();
