@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class SchoolsController extends Controller
 {
-  
     public function index()
     {
         $schools = Schools::all();
