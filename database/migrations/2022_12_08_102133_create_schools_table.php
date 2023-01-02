@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->string('code');
             $table->string('city');
             $table->string('address');
