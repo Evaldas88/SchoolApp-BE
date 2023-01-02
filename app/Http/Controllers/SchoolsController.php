@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class SchoolsController extends Controller
 {
+  
     public function index()
     {
         $schools = Schools::all();
@@ -134,4 +135,22 @@ class SchoolsController extends Controller
             ], 500);
     }
 
+
+    public function search($name = null)
+    {
+        $school = Schools::where('name', 'like',  "%$name%");
+        return $school->get();
+    //     if ($school->get())
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => $school->get()
+    //         ]);
+    //     else
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'cant find schools'
+    //         ], 500);
+      }
 }
+
+ 
