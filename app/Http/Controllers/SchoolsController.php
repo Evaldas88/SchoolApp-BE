@@ -62,7 +62,7 @@ class SchoolsController extends Controller
         $school->code = $request->code;
         $school->city = $request->city;
         $school->address = $request->address;
-
+        $school->image = $request->image;
         
         if ($school->save())
             return response()->json([
@@ -72,7 +72,7 @@ class SchoolsController extends Controller
         else
             return response()->json([
                 'success' => false,
-                'message' => 'Cant save  '
+                'message' => 'Cant save school '
             ], 500);
     }
 
@@ -98,6 +98,7 @@ class SchoolsController extends Controller
         $data['code'] = $request->code;
         $data['city'] = $request->city;
         $data['address'] = $request->address;
+        $data['image'] = $request->image;
 
 
         if ($school->update($data))
@@ -138,19 +139,19 @@ class SchoolsController extends Controller
 
     public function search($name = null)
     {
-        $school = Schools::where('name', 'like',  "%$name%");
+        $school = Schools::where('name', 'like', "%$name%");
         return $school->get();
-    //     if ($school->get())
-    //         return response()->json([
-    //             'success' => true,
-    //             'message' => $school->get()
-    //         ]);
-    //     else
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'cant find schools'
-    //         ], 500);
-      }
+        //     if ($school->get())
+        //         return response()->json([
+        //             'success' => true,
+        //             'message' => $school->get()
+        //         ]);
+        //     else
+        //         return response()->json([
+        //             'success' => false,
+        //             'message' => 'cant find schools'
+        //         ], 500);
+    }
 }
 
  

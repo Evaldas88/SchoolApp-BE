@@ -10,7 +10,7 @@ class Schools extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'code', 'city', 'address'
+        'name', 'code', 'city', 'address','image'
     ];
     public function applications()
     {
