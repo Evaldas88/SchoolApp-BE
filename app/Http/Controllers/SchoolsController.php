@@ -140,16 +140,7 @@ class SchoolsController extends Controller
     {
         $school = Schools::where('name', 'like', "%$name%");
         return $school->get();
-        //     if ($school->get())
-        //         return response()->json([
-        //             'success' => true,
-        //             'message' => $school->get()
-        //         ]);
-        //     else
-        //         return response()->json([
-        //             'success' => false,
-        //             'message' => 'cant find schools'
-        //         ], 500);
+      
     }
 }
 

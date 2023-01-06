@@ -5,6 +5,7 @@ use App\Models\Schools;
 use App\Models\User;
 
 use App\Models\Applications;
+use Illuminate\Console\Application;
 use Illuminate\Http\Request;
 
 class ApplicationsController extends Controller
@@ -42,6 +43,47 @@ class ApplicationsController extends Controller
         }
     }
 
+    public function show($id)
+    {
+
+        if (auth()->user()->role != 0)
+        return response()->json([
+            'success' => false,
+            'message' => 'Unauthorized'
+        ], 401);
+
+        $information = Applications::where('id', $id)->get();
+
+        $allInfo = [];
+
+        foreach($information as $info ) {
+            $schools = Schools::find($info->school_id);
+            $appl = Applications::find($info->id);
+            $user = User::find($info->user_id);
+            $info['school_name'] = $schools->name;
+            $info['student_code'] = $appl->student_id;
+            $info['city'] = $schools->city;
+            $info['user_name'] = $user->name;
+            $info['school_address'] = $schools->address;
+            $info['school_code'] = $schools->code;
+            $info['created_at'] = $appl->created_at;
+            $allInfo[] = $info;
+        }
+        if ($allInfo) {
+            return response()->json([
+                'success' => true,
+                'message' => $allInfo
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to get list'
+            ], 500);
+        }
+    }
+
+    
+
     public function all()
     {
         //Authentification
@@ -73,10 +115,7 @@ class ApplicationsController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'schools_id' => 'required'
-        // ]);
-
+    
 
         $school = new Applications();
         $school->school_id = $request->school_id;
